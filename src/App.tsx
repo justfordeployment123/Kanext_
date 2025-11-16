@@ -1,0 +1,39 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
+import Office from "./pages/Office";
+import PlayerIQ from "./pages/PlayerIQ";
+import TeamIQ from "./pages/TeamIQ";
+import RecruitingIQ from "./pages/RecruitingIQ";
+import PrediXt from "./pages/PrediXt";
+import NotFound from "./pages/NotFound";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/office" element={<Office />} />
+          <Route path="/player-iq-workspace" element={<PlayerIQ />} />
+          <Route path="/team-iq-workspace" element={<TeamIQ />} />
+          <Route path="/recruit-iq-workspace" element={<RecruitingIQ />} />
+          <Route path="/predixt-workspace" element={<PrediXt />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
